@@ -10,7 +10,7 @@
 
 void test() {
     while (1) {
-        for (unsigned long i = 0; i < 20000000; i++ ) {}
-        printk("kernel is running!\n");
+        //for (unsigned long i = 0; i < 20000000; i++ ) {}
+        //printk("kernel is running!\n");
     }
 }

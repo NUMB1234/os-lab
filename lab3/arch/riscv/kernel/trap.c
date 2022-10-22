@@ -13,7 +13,8 @@ void trap_handler(unsigned long scause, unsigned long sepc) {
     //判断是否为interrupt
         unsigned long EC = scause % (1ul<<63);
         if (EC == 5) {
-            printk("[S] Supervisor Mode Timer Interrupt\n");
+            do_timer();
+            //printk("[S] Supervisor Mode Timer Interrupt\n");
             //printk("1\n");
             clock_set_next_event();
         }

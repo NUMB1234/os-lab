@@ -7,6 +7,8 @@ _start:
     la sp, boot_stack_top   
     
     # YOUR CODE HERE
+    call mm_init
+    call task_init
 
     # ------------------
 

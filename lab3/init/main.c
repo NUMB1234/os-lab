@@ -5,6 +5,7 @@
 
 #include "clock.h"
 #include "trap.h"
+#include "proc.h"
 
 extern void test();
 
@@ -33,7 +34,8 @@ int start_kernel() {
 
 
     //  printk("%d", 2022);
-    //  printk(" Hello RISC-V\n");
+    printk("Hello RISC-V\n");
+    printk("idle process is running!\n");
 
     test(); // DO NOT DELETE !!!
 

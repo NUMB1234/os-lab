@@ -1,6 +1,9 @@
     .section .text.entry
     .align 2
     .globl _traps 
+    .global __dummy
+    .global __switch_to
+
 _traps:
     # YOUR CODE HERE
     # -----------
@@ -159,3 +162,82 @@ _traps:
     sret
 
     # -----------
+
+__dummy:
+    # YOUR CODE HERE
+    la t0, dummy  
+    csrw sepc, t0
+    sret
+
+__switch_to:
+    # save state to prev process
+    # YOUR CODE HERE
+
+    #保存当前线程的ra, sp, s0~s11到当前线程的 thread_struct 中
+    #知，一个指针8位，一个unit64也是8位，所以thread在task_struct中偏移量为5*8=40
+    addi t0, a0, 40
+    sd ra, 0(t0)
+    addi t0, t0, 8
+    sd sp, 0(t0)
+    addi t0, t0, 8
+    sd s0, 0(t0)
+    addi t0, t0, 8
+    sd s1, 0(t0)
+    addi t0, t0, 8
+    sd s2, 0(t0)
+    addi t0, t0, 8
+    sd s3, 0(t0)
+    addi t0, t0, 8
+    sd s4, 0(t0)
+    addi t0, t0, 8
+    sd s5, 0(t0)
+    addi t0, t0, 8
+    sd s6, 0(t0)
+    addi t0, t0, 8
+    sd s7, 0(t0)
+    addi t0, t0, 8
+    sd s8, 0(t0)
+    addi t0, t0, 8
+    sd s9, 0(t0)
+    addi t0, t0, 8
+    sd s10, 0(t0)
+    addi t0, t0, 8
+    sd s11, 0(t0)
+
+
+    # restore state from next process
+    # YOUR CODE HERE
+
+    addi t0, a1, 40
+    ld ra, 0(t0)
+    addi t0, t0, 8
+    ld sp, 0(t0)
+    addi t0, t0, 8
+    ld s0, 0(t0)
+    addi t0, t0, 8
+    ld s1, 0(t0)
+    addi t0, t0, 8
+    ld s2, 0(t0)
+    addi t0, t0, 8
+    ld s3, 0(t0)
+    addi t0, t0, 8
+    ld s4, 0(t0)
+    addi t0, t0, 8
+    ld s5, 0(t0)
+    addi t0, t0, 8
+    ld s6, 0(t0)
+    addi t0, t0, 8
+    ld s7, 0(t0)
+    addi t0, t0, 8
+    ld s8, 0(t0)
+    addi t0, t0, 8
+    ld s9, 0(t0)
+    addi t0, t0, 8
+    ld s10, 0(t0)
+    addi t0, t0, 8
+    ld s11, 0(t0)
+
+    ret
+
+
+
