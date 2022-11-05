@@ -49,10 +49,11 @@ void do_timer() {
     // 2. 如果当前线程不是 idle 对当前线程的运行剩余时间减1 若剩余时间仍然大于0 则直接返回 否则进行调度
 
     /* YOUR CODE HERE */
-    if (current == idle) schedule();
+    if (current == idle)  schedule();
     else {
+        //if (current->counter <0 ) current->counter = 0;
+        current->counter--;
         if (current->counter > 0) {
-            current->counter--;
             return;
         }
         else schedule();
@@ -146,6 +147,7 @@ void dummy() {
     int last_counter = -1;
     while(1) {
         if (last_counter == -1 || current->counter != last_counter) {
+            //if (current->counter == 1) current->counter = 0;
             last_counter = current->counter;
             auto_inc_local_var = (auto_inc_local_var + 1) % MOD;
             //printk("counter = %d. ",current->counter);

@@ -206,6 +206,7 @@ __switch_to:
 
 
     # restore state from next process
+    #将下一个线程的thread_struct中的相关数据载入到ra、sp、s0~s11中
     # YOUR CODE HERE
 
     addi t0, a1, 40
